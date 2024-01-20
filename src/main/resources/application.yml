@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: local
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: DATASOURCE_URL
+    username: USERNAME
+    password: PASSWORD
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+    include-exception: false
+    include-stacktrace: never
+    include-binding-errors: never
+    include-message: never
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
