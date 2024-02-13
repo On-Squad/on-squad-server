@@ -66,5 +66,4 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           source: 'docker-compose.yml'
-          target: '~'
           rm: true
