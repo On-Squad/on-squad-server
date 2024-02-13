@@ -55,10 +55,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}
 
       - name: Make Docker-Compose.yml
-        run: |
-          echo $(pwd)
-          cd ~ 
-          echo $(pwd)
+        run: | 
           echo "${{ secrets.DOCKER_COMPOSE }}" > ./docker-compose.yml
 
       - name: Delivery docker-compose.yml
