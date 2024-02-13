@@ -4,10 +4,14 @@ on:
   push:
     branches: ['main', 'develop']
 
+env:
+  PROJECT_NAME: onsquad
+
 jobs:
-  docker-push:
+  onsquad-server:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout to project
         uses: actions/checkout@v3
 
@@ -15,7 +19,14 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+
           distribution: 'temurin'
+
+      - name: Make application-dev.yml & application-prod.yml
+        run: |
+          cd ./src/main/resources
+          echo "${{ secrets.APPLICATION_DEV }}" > ./application-dev.yml
+          echo "${{ secrets.APPLICATION_PROD }}" > ./application-prod.yml
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -41,4 +52,19 @@ jobs:
           push: true
           file: ./docker/Dockerfile
           context: .
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/onsquad
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/$PROJECT_NAME
+
+      - name: Make Docker-Compose.yml
+        run: |
+          cd ~ 
+          echo "${{ secrets.DOCKER_COMPOSE }}" > ./docker-compose.yml
+
+      - name: Delivery docker-compose.yml
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          source: './docker-compose.yml'
+          rm: true
