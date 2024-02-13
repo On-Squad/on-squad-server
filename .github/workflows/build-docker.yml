@@ -66,5 +66,5 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           source: 'docker-compose.yml'
-          target: ${{ env.PROJECT_NAME }}
+          target: 'docker'
           rm: true
