@@ -57,6 +57,7 @@ jobs:
       - name: Make Docker-Compose.yml
         run: |
           cd ~ 
+          echo $(pwd)
           echo "${{ secrets.DOCKER_COMPOSE }}" > ./docker-compose.yml
 
       - name: Delivery docker-compose.yml
