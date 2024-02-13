@@ -2,6 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all,java,gradle
 
 ### Custom ###
+src/docs/
+src/main/resources/static/
 src/main/generated
 src/main/resources/application-*.yml
 src/main/resources/data-*.sql
