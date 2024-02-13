@@ -9,10 +9,29 @@ spring:
     password: PASSWORD
 
   jpa:
+    hibernate:
+      ddl-auto: create
     open-in-view: false
     properties:
       hibernate:
         format_sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: MAIL_USERNAME
+    password: MAIL_PASSWORD
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+    auth-code-expiration-millis: 300000
 
 server:
   error:
