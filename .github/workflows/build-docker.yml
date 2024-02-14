@@ -53,7 +53,7 @@ jobs:
           push: true
           file: ./docker/Dockerfile
           context: .
-          tags: ${{ secrets.DOCKEHRUB_USERNAME }}/${{ env.PROJECT_NAME }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.PROJECT_NAME }}
 
       - name: Make Docker-Compose.yml
         run: | 
