@@ -2,7 +2,8 @@ name: ci/cd
 
 on:
   push:
-    branches: ['main', 'develop']
+    branches: ['main']
+  workflow_dispatch:
 
 env:
   PROJECT_NAME: onsquad
@@ -24,10 +25,8 @@ jobs:
       - name: Make application-dev.yml & application-prod.yml
         run: |
           cd ./src/main/resources
-          echo $(ls -al)
           echo "${{ secrets.APPLICATION_DEV }}" > ./application-dev.yml
           echo "${{ secrets.APPLICATION_PROD }}" > ./application-prod.yml
-          echo $(ls -al)
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
